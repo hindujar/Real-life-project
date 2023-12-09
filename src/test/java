@@ -1,0 +1,45 @@
+package reallifeproject.tests;
+
+
+	
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+import reallifeproject.pages.BookPage;
+import reallifeproject.pages.LoginPage;
+import utility.MyListener;
+
+
+
+@Listeners(MyListener.class)
+public class BlogsTest {
+    protected static WebDriver driver;
+    LoginPage loginPage;
+    BookPage bookPage;
+
+    @BeforeTest
+    public void setup() {
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        loginPage = new LoginPage(driver);
+        bookPage = new BookPage(driver);
+    }
+
+    @Test
+    public void purchaseBook() throws InterruptedException {
+        loginPage.navigateToBookswagon();
+        loginPage.clickTextBooksSection();
+        bookPage.selectBook();
+        bookPage.addToCart();
+        bookPage.increaseItemCount();
+        // Other test steps if necessary
+    }
+
+    @AfterTest
+    public void tearDown() {
+        driver.quit();
+    }
+}
