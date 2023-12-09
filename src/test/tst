@@ -1,0 +1,10 @@
+package reallifeproject;
+import org.testng.annotations.Test;
+
+public class Tst {
+	@Test
+	public void method() {
+		
+	}
+
+}
